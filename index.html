@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta   http-equiv="Expires"   CONTENT="0">
+	<meta   http-equiv="Cache-Control"   CONTENT="no-cache">
+	<meta   http-equiv="Pragma"   CONTENT="no-cache">
+	<title>个人简历时间线</title>
+	<script src="js/vue.js"></script>
+	<script type="text/javascript" src="js/jquery-latest.js"></script>
+	<script type="text/javascript" src="js/jianli.js"></script>
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+	<div id="catalog">
+		<p style="cursor: pointer;margin: 5px;font-size: 20px;" onclick="Tojianli()">简</p>
+	</div>
+	<div id='modle'>
+		
+	</div>
+	<div id="timeline">
+		<div id="textout">
+			<div class='text' v-for="(title, index) in Title" v-bind:index="index" v-on:click="refresh(index)" v-on:mousemove="movecolor(index)" v-on:mouseout="outcolor(index)">{{title.text}}</div>	
+		</div>
+		<div id="textout2">
+			<div class='text2' v-for="(date, index) in Date" v-bind:index="index" v-on:click="refresh(index)" v-on:mousemove="movecolor(index)" v-on:mouseout="outcolor(index)">{{date.text}}</div>	
+		</div>
+		<div id="lineout">
+			<div class="line" v-for="(item, index) in Id" v-bind:index="index" v-bind:id="nameu(index)" v-on:mousemove="movecolor(index)" v-on:mouseout="outcolor(index)" v-bind:style="{background:color}"></div>
+		</div>
+	</div>
+	<iframe id="content" frameborder="0" scrolling="yes" src="neirong.html"></iframe>
+	<footer><p><font color="white">&copy; Mr. Li</font></p></footer>
+	</body>
+	<script type="text/javascript">
+
+		var idx = 0;
+		var choosed = false;
+		var choosecolor = "rgb(0,0,0)";
+		var Color = choosed?choosecolor:"#ccc";
+		$('#content').attr('src', $('#content').attr('src'));
+
+		function Tojianli(){
+			idx=-1;
+			$('#content').attr('src', $('#content').attr('src'));
+			$('#lineout').children().css('background','#ccc')
+		}
+
+		var datt = [];
+		var tit = [];
+		jianli.forEach(function(item,index){
+			datt.push({text:item.date});
+			tit.push({text:item.title})
+		})
+		
+
+
+		var da = new Vue({
+			el:'#textout',
+			data:{
+				Title:[]
+			},
+			created:function(){				
+				this.Title = tit
+			},
+			methods:{
+				refresh:function(num){
+					$('#lineout').children().css('background','#ccc')
+					choosed = true;
+					idx = num;
+					$('#content').attr('src', $('#content').attr('src'));
+					document.getElementById("l"+num).style.background = choosecolor;
+				},
+				movecolor:function(num){
+				/*if(choosed === false){
+					document.getElementById("l"+num).style.background = "rgb(160,0,0)" ;
+				}*/
+			},
+			outcolor:function(num){
+				/*if(choosed === false){
+					document.getElementById("l"+num).style.background = "#ccc" ;
+				}	*/			
+			}
+		}
+	})
+
+		var time = new Vue({
+			el:'#textout2',
+			data:{
+				Date:[]
+			},
+			created:function(){
+				this.Date = datt;
+			},
+			methods:{
+				refresh:function(num){
+					$('#lineout').children().css('background','#ccc')
+					choosed = true;
+					idx = num;
+					$('#content').attr('src', $('#content').attr('src'));
+					document.getElementById("l"+num).style.background = choosecolor;
+				},
+				movecolor:function(num){
+				/*if(choosed === false){
+					document.getElementById("l"+num).style.background = "rgb(160,0,0)" ;
+				}*/
+			},
+			outcolor:function(num){
+				/*if(choosed === false){
+					document.getElementById("l"+num).style.background = "#ccc" ;
+				}	*/			
+			}
+		}
+	})
+
+		var line = new Vue({
+			el:'#lineout',
+			data:{
+				Id:[],
+				color:"#ccc"
+			},
+			created:function(){
+				this.Id = datt
+				this.movecolor=da.movecolor
+				this.outcolor=da.outcolor
+				this.color = Color
+			},
+			methods:{
+				movecolor:function(){},
+				outcolor:function(){},
+				nameu:function(id){
+					return "l"+(id)
+				}
+			}
+		})
+
+
+	</script>
+	</html>
