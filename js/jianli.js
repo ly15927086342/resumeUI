@@ -1,0 +1,94 @@
+var jianli = [
+{
+	'title':'重庆博物馆地图',
+	'date':'2017/10/01',
+	'text':'&emsp;&emsp;自己画的第一张地图，重庆博物馆分布地图，其中用到了中国的扇子作为图标。',
+	'img':'img/重庆博物馆地图_李煜-06.jpg'
+},
+{
+	'title':'NGC_IAS项目',
+	'date':'2017/10/01',
+	'text':'&emsp;&emsp;负责分形模型、社会网络分析模型、最小生成树模型。',
+	'img':''
+},
+{
+	'title':'海南模型IAS_Model',
+	'date':'2018/01/30',
+	'text':'&emsp;&emsp;负责国土空间开发土地适宜性单要素评价模型和城镇化率预测模型，包含多个指标。做webapi接口供计算访问，返回模型计算结果。模型计算写在C++dll中，在C#中引用。',
+	'img':''
+},
+{
+	'title':'武大山水地图',
+	'date':'2018/03/01',
+	'text':'&emsp;&emsp;千里江山图style',
+	'img':'img/武大山水图-李煜-01.jpg'
+},
+{
+	'title':'小龙虾连锁店地图',
+	'date':'2018/04/01',
+	'text':'&emsp;&emsp;武侠风',
+	'img':'img/小龙虾连锁店地图-01.jpg'
+},
+{
+	'title':'IE图片自动上传程序',
+	'date':'2018/05/01',
+	'text':'&emsp;&emsp;该程序基于C#窗体，通过程序自动上传待处理图片至指定网站，并自动保存处理后的图片至本地文件夹。',
+	'img':'img/IE.png'
+},
+{
+	'title':'天津仪表盘可视化项目',
+	'date':'2018/05/31',
+	'text':'&emsp;&emsp;学习使用d3，一款定制性强的图形绘制库，可以自由构建各种图表，但是缺点就是太复杂。一个人花了将近三周的时间，不断改进，最后成果还算可以。',
+	'img':'img/dashboard.png'
+},
+{
+	'title':'重庆OIAS_CAD解析任务',
+	'date':'2018/07/12',
+	'text':'&emsp;&emsp;使用了开源的libopencad库，用C++解析基本的dwg图形。同时用到了jni,将dwg文件路径从Java传递到C++中，在C++中调用libopencad对dwg文件进行解析，然后将解析结果存入jsoncpp（库）的Json::Value中，将json数据转为string类型，回传给Java，在Java中转成geotools可以使用的DefaultFeatureCollection类型。',
+	'img':''
+},
+{
+	'title':'重庆IOAS_geojson数据传递解析任务',
+	'date':'2018/07/20',
+	'text':'&emsp;&emsp;为了方便调用模型，解决数据传递问题。需要对传递到C++部分的geojson字符串进行解析，然后存储为OGRFeature（gdal库）方便模型运算，以及计算结果转换为geojson格式的字符串，回传给Java。',
+	'img':''
+},
+{
+	'title':'重庆IOAS_自定义类传递任务',
+	'date':'2018/07/27',
+	'text':'&emsp;&emsp;由于字符串传递可能存在序列化和反序列化耗时的情况，要求设计一种传递更为高效的结构的接口。因此，设计了自定义的类，作为传递媒介，类的层次关系是LayerJNI->FeatureCollectionJNI->FeatureJNI->FieldJNI，分别存储图层-》记录集合-》记录-》字段名、属性和值，定义好后在C++中要使用Java中定义的类，需要FindClass和GetMethodId等，在C++中进行声明。使用过程中产生的jobject需要及时释放内存，用DelLocalRef()的方法，以免内存泄漏。在C++中接收到数据后转换为OGRFeature，模型运算，再将计算结果转为自定义的类，回传给Java，在Java中解析自定义格式，转化为DefaultFeatureCollection。',
+	'img':''
+},
+{
+	'title':'重庆IOAS_UI界面任务',
+	'date':'2018/08/04',
+	'text':'&emsp;&emsp;暂时考虑用UIkit和Vue来做前端',
+	'img':'img/IOAS.png'
+},
+{
+	'title':'英文论文',
+	'date':'2018/08/08',
+	'text':'&emsp;&emsp;需要对本科论文修改，并写成英文论文。我需要先了解英文论文的套路，然后按照格式进行修改、补充。月底交论文。',
+	'img':''
+},
+{
+	'title':'英文论文结束',
+	'date':'2018/11/12',
+	'text':'&emsp;&emsp;经过添加驱动力预测部分，实验，以及论文的修改，论文于11.12英文稿完成，接下来是老师修改事件。',
+	'img':''
+},
+{
+	'title':'英文论文修改',
+	'date':'2018/11/17',
+	'text':"&emsp;&emsp;苏老师给提了修改意见，接下来要尽快修改论文，有十二个需要改的地方。<br/>1.29-37行要从全球视角写，把现在这段移到Study Area中；<br/>2.文章不能有如can't这样的缩写；<br/>3.38行solve urban sprawl表达不正确；<br/>4.51-54行表达不当，不要质疑UGB的作用，提出需要解决哪些问题，两点，一是要摸清城市扩张的现状，程度，二是要了解城市面积时空变化的过程；<br/>5.agglomeration有歧义，改为built-up land；<br/>6.75行morphological agglomeration需要有一个文字描述或者图片；<br/>7.258和269行，标题可以改；<br/>8.Study Area 和 Data and processing放到theory上面部分；<br/>9.把result中分析的部分放到discussion中；<br/>10.改为discussion and conclusion；<br/>11.conclusion内容太少，最好描述下这个方法到底怎么用在policy中；<br/>12.把appendix移到正文内容中。",
+	'img':''
+},
+{
+	'title':'论文返修第一次',
+	'date':'2019/01/30',
+	'text':'&emsp;&emsp;论文苏老师返修第一次结束。',
+	'img':''
+}
+]
+
+jianli.reverse()
